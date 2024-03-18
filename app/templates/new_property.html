@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block css %}{% endblock %}
+
+{% block main %}
+    <h1>Add Property</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <div>
+            <label>{{ form.title.label }}</label><br>
+            {{ form.title(size=20) }}
+            {% for error in form.title.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            <label>{{ form.description.label }}</label><br>
+            {{ form.description(size=20) }}
+            {% for error in form.description.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-row">
+            <div>
+                <label>No. of Rooms</label><br>
+                {{ form.num_rooms }}
+                {% for error in form.num_rooms.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                <label>No. of Bathrooms</label><br>
+                {{ form.num_baths }}
+                {% for error in form.num_baths.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-row">
+            <div>
+                <label>{{ form.price.label }}</label><br>
+                {{ form.price }}
+                {% for error in form.price.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                <label>{{ form.type.label }}</label><br>
+                {{ form.type }}
+                {% for error in form.type.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div>
+            <label>{{ form.location.label }}</label><br>
+            {{ form.location }}
+            {% for error in form.location.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            <label for="file-upload" class="file-upload">Photo</label>
+            <input id="file-upload" type="file" name="photo">
+            {% for error in form.photo.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            <button type="submit">Add Property</button>
+        </div>
+    </form>
+{% endblock %}

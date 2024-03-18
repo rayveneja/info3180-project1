@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block css %}{% endblock %}
+
+{% block main %}
+<div class="propertyID-details">
+    <div class="propertyID-image">
+        <img src="{{ url_for('static', filename='uploads/' + property.photo) }}" alt="{{ property.title }}">
+    </div>
+    <div class="propertyID-info">
+        <h2>{{ property.title }}</h2>
+        <div class="price-type">
+            <span class="propertyID-price">${{ '{:,.0f}'.format(property.price) }}</span>
+            <span class="type">{{ property.type }}</span>
+        </div>
+        <p class="descriptionID">{{ property.description }}</p>
+        <div class="room-detailsID">
+            <span><i class="fas fa-bed"></i> {{ property.num_rooms }}</span>
+            <span><i class="fas fa-bath"></i> {{ property.num_baths }}</span>
+        </div>
+        <p class="addressID"><i class="fas fa-map-marker-alt"></i> {{ property.location }}</p>
+        <button class="email-realtor">Email Realtor</button>
+    </div>
+</div>
+{% endblock %}
